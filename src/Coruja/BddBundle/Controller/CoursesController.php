@@ -9,6 +9,9 @@ class CoursesController extends Controller
 {
     public function listAction()
     {
-        return new Response();
+        return $this->render(
+            'CorujaBddBundle:Courses:list.html.twig',
+            array()
+        );
     }
 }
