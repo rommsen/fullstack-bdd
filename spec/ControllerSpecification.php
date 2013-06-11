@@ -18,7 +18,6 @@ abstract class ControllerSpecification extends ObjectBehavior
     function let(ContainerInterface $container, Registry $doctrine, ObjectManager $manager, EngineInterface $templating, EntityRepository $repository)
     {
         if (!$this->getWrappedObject() instanceof ContainerAwareInterface) {
-            return;
             throw new \RuntimeException('Controller must implement ContainerAwareInterface.');
         }
 

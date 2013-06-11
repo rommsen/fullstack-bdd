@@ -18,4 +18,10 @@ class CoursesControllerSpec extends ControllerSpecification
         $response = $this->listAction();
         $response->getStatusCode()->shouldReturn(200);
     }
+
+    function it_should_render_list_of_courses($templating)
+    {
+        $this->listAction();
+        $templating->renderResponse('CorujaBddBundle:Courses:list.html.twig', Argument::cetera())->shouldBeCalled();
+    }
 }
