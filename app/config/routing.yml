@@ -1,4 +1,10 @@
 coruja_bdd:
-    resource: "@CorujaBddBundle/Resources/config/routing.xml"
+    resource: "@CorujaBddBundle/Controller/"
+    type:     annotation
     prefix:   /
 
+courses:
+    pattern: /
+    defaults: { _controller: CorujaBddBundle:Courses:list }
+    requirements:
+        _method: GET

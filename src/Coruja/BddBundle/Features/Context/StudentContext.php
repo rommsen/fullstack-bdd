@@ -2,15 +2,19 @@
 
 namespace Coruja\BddBundle\Features\Context;
 
+use Symfony\Component\HttpKernel\KernelInterface;
+use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\Behat\Context\BehatContext,
     Behat\Behat\Exception\PendingException;
 use Behat\MinkExtension\Context\MinkAwareInterface;
 use Behat\Mink\Mink;
 
-class StudentContext extends BehatContext implements MinkAwareInterface
+class StudentContext extends BehatContext implements MinkAwareInterface,
+    KernelAwareInterface
 {
     private $mink;
     private $minkParameters;
+    private $kernel;
 
     public function setMink(Mink $mink)
     {
@@ -22,20 +26,29 @@ class StudentContext extends BehatContext implements MinkAwareInterface
         $this->minkParameters = $parameters;
     }
 
+    public function setKernel(KernelInterface $kernel)
+    {
+        $this->kernel = $kernel;
+    }
+
     /**
      * @Given /^there are no courses scheduled$/
      */
     public function thereAreNoCoursesScheduled()
     {
-
     }
 
     /**
      * @When /^I go to the "([^"]*)" page$/
      */
-    public function iGoToThePage($arg1)
+    public function iGoToThePage($page)
     {
-        throw new PendingException();
+        $url = $this->kernel->getContainer()->get('router')->generate(
+            str_replace(' ', '_', $page), array(), false
+        );
+
+        $this->mink->getSession()->visit($url);
+        $this->mink->assertSession()->statusCodeEquals(200);
     }
 
     /**
