@@ -11,4 +11,8 @@ class CourseSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Coruja\BddBundle\Entity\Course');
     }
+
+    function it_should_have_a_primary_key_which_is_null() {
+        $this->getId()->shouldReturn(null);
+    }
 }
