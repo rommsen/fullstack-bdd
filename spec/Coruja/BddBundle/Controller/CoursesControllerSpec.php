@@ -12,4 +12,10 @@ class CoursesControllerSpec extends ControllerSpecification
     {
         $this->shouldHaveType('Coruja\BddBundle\Controller\CoursesController');
     }
+
+    function it_should_respond_to_list_action_call()
+    {
+        $response = $this->listAction();
+        $response->getStatusCode()->shouldReturn(200);
+    }
 }
