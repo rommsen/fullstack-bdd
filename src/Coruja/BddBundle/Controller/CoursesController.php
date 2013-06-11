@@ -9,9 +9,14 @@ class CoursesController extends Controller
 {
     public function listAction()
     {
+        $courses = $this->get('doctrine')
+            ->getManager()
+            ->getRepository('CorujaBddBundle:Course')
+            ->findAll();
+
         return $this->render(
             'CorujaBddBundle:Courses:list.html.twig',
-            array()
+            array('courses' => $courses)
         );
     }
 }
