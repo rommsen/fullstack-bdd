@@ -24,4 +24,11 @@ class CoursesControllerSpec extends ControllerSpecification
         $this->listAction();
         $templating->renderResponse('CorujaBddBundle:Courses:list.html.twig', Argument::cetera())->shouldBeCalled();
     }
+
+    function it_should_pass_courses_from_domain_to_the_view($repository, $templating)
+    {
+        $repository->findAll()->willReturn(array('item1', 'item2'));
+        $this->listAction();
+        $templating->renderResponse('CorujaBddBundle:Courses:list.html.twig', array('courses' => array('item1', 'item2')), Argument::cetera())->shouldBeCalled();
+    }
 }
