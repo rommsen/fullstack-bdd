@@ -1,0 +1,4 @@
+coruja_bdd:
+    resource: "@CorujaBddBundle/Resources/config/routing.xml"
+    prefix:   /
+
