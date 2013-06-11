@@ -25,7 +25,9 @@
         "behat/symfony2-extension": "dev-master@dev",
         "phpspec/phpspec":"dev-master",
         "behat/mink-extension": "*",
-        "behat/mink-browserkit-driver": "*"
+        "behat/mink-browserkit-driver": "*",
+        "doctrine/data-fixtures" : "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

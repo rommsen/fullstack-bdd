@@ -27,7 +27,7 @@ class StudentContext extends BehatContext implements MinkAwareInterface
      */
     public function thereAreNoCoursesScheduled()
     {
-        throw new PendingException();
+
     }
 
     /**
