@@ -181,4 +181,34 @@ class StudentContext extends BehatContext implements MinkAwareInterface,
         throw new PendingException();
     }
 
+
+    /**
+     * @Given /^es sind keine Kurse geplant$/
+     */
+    public function esSindKeineKurseGeplant()
+    {
+    }
+
+    /**
+     * @Given /^ich auf die "([^"]*)" Seite gehe$/
+     */
+    public function ichAufDieSeiteGehe($seite)
+    {
+        $url = $this->kernel->getContainer()->get('router')->generate(
+            str_replace(' ', '_', $seite), array(), false
+        );
+
+        $this->mink->getSession()->visit($url);
+        $this->mink->assertSession()->statusCodeEquals(200);
+    }
+
+    /**
+     * @Given /^sollte ich keine Kurse sehen$/
+     */
+    public function sollteIchKeineKurseSehen()
+    {
+        $this->mink->assertSession()->pageTextContains(
+            'No courses scheduled.'
+        );
+    }
 }
